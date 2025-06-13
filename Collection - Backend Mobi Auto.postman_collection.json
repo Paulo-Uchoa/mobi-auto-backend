@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "d2df9571-6913-4a77-8d3c-593835448a2a",
+		"name": "Collection - Backend Mobi Auto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13130628"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"if (response.token) {\r",
+							"    pm.environment.set(\"jwt\", response.token);\r",
+							"    console.log(\"Token salvo no ambiente!\");\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"paulo@email.com\",\n    \"senha\": \"123\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Revendas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/revendas",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"revendas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Revenda",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cnpj\": \"12345678000190\",\n    \"nomeSocial\": \"Revenda Exemplo\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/revendas",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"revendas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Usuário",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Joao Assistente\",\n    \"email\": \"joao1@email.com\",\n    \"senha\": \"123456\",\n    \"perfilUsuario\": \"ASSISTENTE\",\n    \"revendaID\": 1\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/usuarios",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Usuarios",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/usuarios",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Oportunidades",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/oportunidades",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"oportunidades"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Oportunidade",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cliente\": {\n        \"nome\": \"teste\",\n        \"email\": \"email@email.com\",\n        \"telefone\": \"teste\"\n    },\n     \"veiculo\": {\n        \"marca\": \"marca1\",\n        \"modelo\": \"modelo1\",\n        \"versao\": \"versao1\",\n        \"anoModelo\": \"modelo1\"\n    },\n    \"revendaID\": 1\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/oportunidades",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"oportunidades"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atribuir Próxima Oportunidade",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/oportunidades/atribuir/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"oportunidades",
+						"atribuir",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Oportunidade",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cliente\": {\n        \"nome\": \"Cliente Teste\",\n        \"email\": \"cliente@email.com\",\n        \"telefone\": \"11999999999\"\n    },\n    \"veiculo\": {\n        \"marca\": \"Fiat\",\n        \"modelo\": \"Uno\",\n        \"versao\": \"1.0\",\n        \"anoModelo\": 2020\n    },\n    \"status\": \"ATENDIMENTO\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/oportunidades/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"oportunidades",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transferir Oportunidade",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"novoResponsavelId\": 2\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/oportunidades/1/transferir",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"oportunidades",
+						"1",
+						"transferir"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "jwt",
+			"value": ""
+		}
+	]
+}
