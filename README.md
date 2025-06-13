@@ -48,6 +48,15 @@ Arquitetura e Tecnologias
 
 Não foi implementado casos de testes.
 
+Algumas melhorias que poderiam ter sido feitas:
+O sistema poderia ter mais validações, mas pelo prazo curto não foi possível.
+O sistema poderia ter utilizado com banco de dados local como Postgres, porém, pela facilidade e sem necessidade
+de utilizar um yml(docker), optei por utilizar H2, apenas para efeito de testes.
+
+Disponibilizarei uma Collections do Postman para testes.
+
+Na classe DataSender -> Pacote Config,
+Já é criado para efeito de testes usuários, como: admin@email.com - senha 123. E uma Revenda.
 
 Como Executar o Projeto:
 
