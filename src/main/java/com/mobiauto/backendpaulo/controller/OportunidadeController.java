@@ -5,6 +5,7 @@ import com.mobiauto.backendpaulo.dto.Status;
 import com.mobiauto.backendpaulo.entity.Usuario;
 import com.mobiauto.backendpaulo.service.OportunidadeService;
 import com.mobiauto.backendpaulo.service.UsuarioService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
+@Tag(name = "Oportunidades", description = "Métodos das Oportunidades")
 @RequestMapping(value = "/oportunidades", produces = MediaType.APPLICATION_JSON_VALUE)
 public class OportunidadeController {
 

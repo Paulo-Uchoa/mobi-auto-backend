@@ -7,6 +7,7 @@ import com.mobiauto.backendpaulo.dto.Status;
 import com.mobiauto.backendpaulo.entity.Usuario;
 import com.mobiauto.backendpaulo.repository.UsuarioRepository;
 import com.mobiauto.backendpaulo.service.OportunidadeService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/login")
+@Tag(name = "Login", description = "Método de Login")
 public class LoginController {
 
     private final AuthenticationManager authenticationManager;

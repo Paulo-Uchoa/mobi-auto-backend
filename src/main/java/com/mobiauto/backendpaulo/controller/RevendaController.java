@@ -2,6 +2,7 @@ package com.mobiauto.backendpaulo.controller;
 
 import com.mobiauto.backendpaulo.dto.RevendaDTO;
 import com.mobiauto.backendpaulo.service.RevendaService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@Tag(name = "Revendas", description = "Métodos das Revendas")
 @RequestMapping(value = "/revendas", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RevendaController {
 

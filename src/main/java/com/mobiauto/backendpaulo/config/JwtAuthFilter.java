@@ -42,6 +42,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
+        System.out.println("Requisição recebida em: " + path);
+
         // Lista de caminhos públicos
         if (isPublicPath(path)) {
             filterChain.doFilter(request, response);
@@ -85,6 +87,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     }
 
     private boolean isPublicPath(String path) {
-        return path.equals("/login") || path.startsWith("/h2-console") || path.equals("/");
+        return path.equals("/login")
+                || path.startsWith("/h2-console")
+                || path.startsWith("/swagger-ui")
+                || path.startsWith("/swagger-resources")
+                || path.startsWith("/v3/api-docs")
+                || path.startsWith("/webjars")
+                || path.equals("/")
+                || path.startsWith("/csrf");
     }
 }
