@@ -53,7 +53,7 @@ Como Executar o Projeto:
 
 Rodar localmente com H2
 
-1. Clone o projeto:
+1. Clone o projeto, crie uma imagem usando o Dockerfile e crie um container que será chamado backendpaulo-container (podendo ser alterado para qualquer nome):
    ```bash
    git clone https://github.com/Paulo-Uchoa/mobi-auto-backend.git
    cd mobi-auto-backend
