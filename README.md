@@ -59,8 +59,10 @@ de utilizar um yml(docker), optei por utilizar H2, apenas para efeito de testes.
 Informações Importantes
 - /h2-console: é possível logar utilizando o login sa e senha 1234. Nesta área livre, é possível ver as entidades.
 - /swagger-ui/index.html: é possível acessar os métodos da aplicação.
+- Arquivo Collection - Backend Mobi Auto.postman_collection.json disponível para Importar via Postman
+    - Nesse arquivo, tem alguns testes que já disponibilizei, como Listar Usuários, Criar usuários, lembrando que para requisições que necessitam de permissão, é necessário refazer o login com a role correta. Entretanto, não é necessário copiar o token para as requisições, pois existe um Script que replica para váriável de ambiente do Postman. Se o script não funcionar, será necessário criar a variável de ambiente "jwt".
 
-Disponibilizarei uma Collections do Postman para testes.
+
 
 Na classe DataSender -> Pacote Config,
 Já é criado para efeito de testes usuários, como: admin@email.com - senha 123. E uma Revenda.
