@@ -79,4 +79,9 @@ Rodar localmente com H2
    docker run -p 8080:8080 --name backendpaulo-container mobi-auto-backend
 
 
+
+Informações de Contato e Suporte:
+- email: paulojosevieira2011@gmail.com
+- linkedin: https://www.linkedin.com/in/paulo-jose-vieira-uchoa/
+
   
