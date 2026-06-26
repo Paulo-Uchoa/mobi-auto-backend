@@ -6,8 +6,7 @@ import com.mobiauto.backendpaulo.entity.Usuario;
 import com.mobiauto.backendpaulo.repository.RevendaRepository;
 import com.mobiauto.backendpaulo.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,16 +14,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private RevendaRepository revendaRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UsuarioRepository usuarioRepository;
+    private final RevendaRepository revendaRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public UsuarioDTO create(UsuarioDTO usuario){
         Usuario toSave = new Usuario(usuario, this.revendaRepository.getReferenceById(usuario.revendaID()));

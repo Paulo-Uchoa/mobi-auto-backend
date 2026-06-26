@@ -1,24 +1,19 @@
 package com.mobiauto.backendpaulo.service;
 
 
-import com.mobiauto.backendpaulo.dto.OportunidadeDTO;
 import com.mobiauto.backendpaulo.dto.RevendaDTO;
-import com.mobiauto.backendpaulo.dto.Status;
-import com.mobiauto.backendpaulo.entity.Oportunidade;
 import com.mobiauto.backendpaulo.entity.Revenda;
-import com.mobiauto.backendpaulo.repository.OportunidadeRepository;
 import com.mobiauto.backendpaulo.repository.RevendaRepository;
-import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class RevendaService {
 
-    @Autowired
-    private RevendaRepository revendaRepository;
+    private final RevendaRepository revendaRepository;
 
     public RevendaDTO create(RevendaDTO revenda){
         Revenda toSave = new Revenda(revenda);

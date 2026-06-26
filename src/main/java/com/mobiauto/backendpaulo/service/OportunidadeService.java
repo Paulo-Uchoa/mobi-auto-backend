@@ -10,25 +10,20 @@ import com.mobiauto.backendpaulo.repository.OportunidadeRepository;
 import com.mobiauto.backendpaulo.repository.RevendaRepository;
 import com.mobiauto.backendpaulo.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class OportunidadeService {
 
-    @Autowired
-    private OportunidadeRepository oportunidadeRepository;
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private RevendaRepository revendaRepository;
+    private final OportunidadeRepository oportunidadeRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final RevendaRepository revendaRepository;
 
     public OportunidadeDTO create(OportunidadeDTO oportunidade){
 
