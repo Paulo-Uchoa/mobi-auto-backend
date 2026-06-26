@@ -1,5 +1,9 @@
 # Mobiauto — Dealership Management System
 
+![CI](https://github.com/Paulo-Uchoa/mobi-auto-backend/actions/workflows/ci.yml/badge.svg)
+![Java](https://img.shields.io/badge/Java-17-orange.svg)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-brightgreen.svg)
+
 A **Spring Boot** backend application for managing car dealerships, including user
 authentication/authorization and permission control.
 
@@ -46,8 +50,18 @@ authentication/authorization and permission control.
 | **Validation** | Hibernate Validator, custom annotations |
 | **DTOs/Records** | `record` types for standardized input/output |
 
+## Tests
+
+Unit tests cover the core business rules of the opportunity workflow — automatic lead assignment,
+transfer permissions and edit permissions — using JUnit 5 and Mockito:
+
+```bash
+./mvnw test
+```
+
+A GitHub Actions workflow runs the build and tests on every push and pull request.
+
 ## Notes & Possible Improvements
-- Automated tests were not implemented.
 - A local database such as PostgreSQL could have been used; for simplicity (no docker-compose needed) H2 was chosen for testing purposes.
 - Diagrams were not produced due to time constraints.
 - More Swagger documentation could have been added per endpoint.
