@@ -1,87 +1,77 @@
-Sistema de Gestão de Revendas - Mobiauto
+# Mobiauto — Dealership Management System
 
-Este projeto é uma aplicação backend em **Spring Boot** desenvolvida para gerenciar revendas, autenticação/autorização de usuários, controle de permissões.
+A **Spring Boot** backend application for managing car dealerships, including user
+authentication/authorization and permission control.
 
-Login e Segurança
-- Login via JWT com as melhores práticas de segurança (senhas com BCrypt, tokens seguros).
-- Perfis de usuários: `ADMIN`, `PROPRIETARIO`, `GERENTE` e `ASSISTENTE`.
-- Controle de acesso com `@PreAuthorize` e validações manuais.
-- Usuários vinculados à revenda com cargo específico.
+## Authentication & Security
+- JWT login following security best practices (BCrypt-hashed passwords, secure tokens).
+- User roles: `ADMIN`, `PROPRIETARIO` (owner), `GERENTE` (manager) and `ASSISTENTE` (assistant).
+- Access control with `@PreAuthorize` and manual validations.
+- Users are linked to a dealership with a specific role.
 
-Gestão de Usuários
-- Cadastro com validação de e-mail único e senha criptografada.
-- Apenas `ADMIN` pode cadastrar qualquer usuário.
-- `PROPRIETARIO` e `GERENTE` podem cadastrar usuários apenas em suas lojas.
-- Controle de permissões para criação, edição e visualização.
+## User Management
+- Registration with unique e-mail validation and encrypted passwords.
+- Only `ADMIN` can create any user.
+- `PROPRIETARIO` and `GERENTE` can create users only within their own stores.
+- Permission control for creation, editing and viewing.
 
-Gestão de Revendas
-- Cada revenda possui:
-  - ID único
-  - CNPJ válido e único
-  - Nome social
-- Validações aplicadas com Bean Validation (`@CNPJ`, , `@Column(unique = true)`).
-- Eram possíveis mais validações como e-mail, controle interno de usuários.
+## Dealership Management
+- Each dealership has:
+  - Unique ID
+  - Valid and unique CNPJ
+  - Trade name
+- Validations applied with Bean Validation (`@CNPJ`, `@Column(unique = true)`).
+- Further validations (e-mail, internal user control) would be possible.
 
-Gestão de Oportunidades
-- Oportunidades com:
-  - ID único
+## Opportunity Management
+- Opportunities have:
+  - Unique ID
   - Status: `NOVO`, `ATENDIMENTO`, `CONCLUIDO`
-  - Cliente: nome, e-mail, telefone
-  - Veículo: marca, modelo, versão, ano modelo
-- Cadastro e edição com controle de permissões.
-- Atribuição automática ao assistente com:
-  - Menor número de atendimentos em andamento
-  - Maior tempo desde a última atribuição
-- Apenas `GERENTE` e `PROPRIETARIO` podem transferir atendimentos.
-- Edição permitida somente para o responsável, exceto gerente/proprietário da loja.
+  - Customer: name, e-mail, phone
+  - Vehicle: brand, model, version, model year
+- Creation and editing with permission control.
+- Automatic assignment to the assistant with:
+  - The fewest opportunities in progress
+  - The longest time since the last assignment
+- Only `GERENTE` and `PROPRIETARIO` can transfer opportunities.
+- Editing is allowed only for the assignee, except for the store's manager/owner.
 
+## Architecture & Technologies
 
-Arquitetura e Tecnologias
-
-| Camada | Tecnologias |
-|--------|----------------------------|
+| Layer | Technologies |
+|-------|--------------|
 | **Backend** | Java 17, Spring Boot 3 |
-| **Segurança** | Spring Security + JWT |
-| **Persistência** | Spring Data JPA, H2 |
-| **Validações** | Hibernate Validator, Anotações personalizadas |
-| **DTOs/Records** | Uso de `record` para padronizar entrada/saída |
+| **Security** | Spring Security + JWT |
+| **Persistence** | Spring Data JPA, H2 |
+| **Validation** | Hibernate Validator, custom annotations |
+| **DTOs/Records** | `record` types for standardized input/output |
 
-Não foi implementado casos de testes.
+## Notes & Possible Improvements
+- Automated tests were not implemented.
+- A local database such as PostgreSQL could have been used; for simplicity (no docker-compose needed) H2 was chosen for testing purposes.
+- Diagrams were not produced due to time constraints.
+- More Swagger documentation could have been added per endpoint.
+- Some database exceptions may occur; the app handles common errors, but coverage could be broader.
 
-Algumas melhorias que poderiam ter sido feitas:
-- O sistema poderia ter mais validações, mas pelo prazo curto não foi possível.
-- O sistema poderia ter utilizado com banco de dados local como Postgres, porém, pela facilidade e sem necessidade
-de utilizar um yml(docker), optei por utilizar H2, apenas para efeito de testes.
-- Não foi feito Diagramas, pelo tempo curto.
-- O sistema poderia ter tido mais documentações pelo Swagger para cada método.
-- Algumas exceções de banco de dados poderão ocorrer (o sistema até tem tratamento para possíveis erros), mas poderia ter tido mais.
+## Useful Endpoints
+- `/h2-console`: log in with user `sa` and password `1234` to inspect the entities.
+- `/swagger-ui/index.html`: explore the application's endpoints.
+- `Collection - Backend Mobi Auto.postman_collection.json`: import into Postman.
+  - It includes sample requests (list users, create users, etc.). For requests that require permissions, log in again with the correct role. You don't need to copy the token manually — a script copies it into a Postman environment variable. If the script fails, create an environment variable named `jwt`.
 
-Informações Importantes
-- /h2-console: é possível logar utilizando o login sa e senha 1234. Nesta área livre, é possível ver as entidades.
-- /swagger-ui/index.html: é possível acessar os métodos da aplicação.
-- Arquivo Collection - Backend Mobi Auto.postman_collection.json disponível para Importar via Postman
-    - Nesse arquivo, tem alguns testes que já disponibilizei, como Listar Usuários, Criar usuários, lembrando que para requisições que necessitam de permissão, é necessário refazer o login com a role correta. Entretanto, não é necessário copiar o token para as requisições, pois existe um Script que replica para váriável de ambiente do Postman. Se o script não funcionar, será necessário criar a variável de ambiente "jwt".
+In `DataSender` (package `Config`), demo data is created for testing — e.g. a user `admin@email.com` with password `123`, and a dealership.
 
+## How to Run
 
+Run locally with H2:
 
-Na classe DataSender -> Pacote Config,
-Já é criado para efeito de testes usuários, como: admin@email.com - senha 123. E uma Revenda.
+```bash
+git clone https://github.com/Paulo-Uchoa/mobi-auto-backend.git
+cd mobi-auto-backend
+docker build -t mobi-auto-backend .
+docker run -p 8080:8080 --name backendpaulo-container mobi-auto-backend
+```
 
-Como Executar o Projeto:
-
-Rodar localmente com H2
-
-1. Clone o projeto, crie uma imagem usando o Dockerfile e crie um container que será chamado backendpaulo-container (podendo ser alterado para qualquer nome):
-   ```bash
-   git clone https://github.com/Paulo-Uchoa/mobi-auto-backend.git
-   cd mobi-auto-backend
-   docker build -t mobi-auto-backend .
-   docker run -p 8080:8080 --name backendpaulo-container mobi-auto-backend
-
-
-
-Informações de Contato e Suporte:
-- email: paulojosevieira2011@gmail.com
-- linkedin: https://www.linkedin.com/in/paulo-jose-vieira-uchoa/
-
-  
+## Contact
+- Email: paulojosevieira2011@gmail.com
+- LinkedIn: https://www.linkedin.com/in/paulo-jose-vieira-uchoa/
